@@ -23,428 +23,149 @@
     --radius: 12px;
     --radius-sm: 8px;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-dark); min-height: 100vh; overflow-x: hidden; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--text-dark);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* ─── LOGIN SCREEN ─── */
-  #login-screen {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--navy);
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  #login-screen::before {
-    content: '';
-    position: absolute;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
-    top: -100px; right: -100px;
-    pointer-events: none;
-  }
-
-  #login-screen::after {
-    content: '';
-    position: absolute;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
-    bottom: -80px; left: -80px;
-    pointer-events: none;
-  }
-
-  .login-card {
-    background: var(--navy-mid);
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 20px;
-    padding: 3rem 2.5rem;
-    width: 100%;
-    max-width: 420px;
-    position: relative;
-    z-index: 1;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .login-logo {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 2.5rem;
-  }
-
-  .login-logomark {
-    width: 44px; height: 44px;
-    background: var(--gold);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-  }
-
+  /* LOGIN */
+  #login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--navy); padding: 2rem; position: relative; overflow: hidden; }
+  #login-screen::before { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; }
+  #login-screen::after { content: ''; position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%); bottom: -80px; left: -80px; pointer-events: none; }
+  .login-card { background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.2); border-radius: 20px; padding: 3rem 2.5rem; width: 100%; max-width: 420px; position: relative; z-index: 1; animation: fadeUp 0.6s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .login-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 2.5rem; }
+  .login-logomark { width: 44px; height: 44px; background: var(--gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
   .login-logomark svg { width: 22px; height: 22px; }
-
-  .login-brand { display: flex; flex-direction: column; }
-  .login-brand-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 22px;
-    color: var(--white);
-    line-height: 1;
-  }
-  .login-brand-sub {
-    font-size: 11px;
-    color: var(--gold);
-    letter-spacing: 0.06em;
-    margin-top: 3px;
-    text-transform: uppercase;
-  }
-
-  .login-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 26px;
-    color: var(--white);
-    line-height: 1.3;
-    margin-bottom: 8px;
-  }
-
-  .login-desc {
-    font-size: 14px;
-    color: var(--text-light);
-    line-height: 1.6;
-    margin-bottom: 2rem;
-  }
-
+  .login-brand-name { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); line-height: 1; }
+  .login-brand-sub { font-size: 11px; color: var(--gold); letter-spacing: 0.06em; margin-top: 3px; text-transform: uppercase; }
+  .login-title { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--white); line-height: 1.3; margin-bottom: 8px; }
+  .login-desc { font-size: 14px; color: var(--text-light); line-height: 1.6; margin-bottom: 2rem; }
   .login-field { margin-bottom: 1rem; }
-  .login-field label {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text-light);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .login-input-wrap { position: relative; }
-  .login-input-wrap input {
-    width: 100%;
-    padding: 13px 16px;
-    background: var(--navy-light);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: var(--radius-sm);
-    color: var(--white);
-    font-size: 15px;
-    font-family: 'DM Sans', sans-serif;
-    outline: none;
-    transition: border 0.2s;
-    letter-spacing: 0.1em;
-  }
-  .login-input-wrap input:focus {
-    border-color: rgba(201,168,76,0.5);
-    box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
-  }
+  .login-field label { display: block; font-size: 12px; font-weight: 500; color: var(--text-light); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .login-input-wrap input { width: 100%; padding: 13px 16px; background: var(--navy-light); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-sm); color: var(--white); font-size: 15px; font-family: 'DM Sans', sans-serif; outline: none; transition: border 0.2s; letter-spacing: 0.1em; }
+  .login-input-wrap input:focus { border-color: rgba(201,168,76,0.5); box-shadow: 0 0 0 3px rgba(201,168,76,0.08); }
   .login-input-wrap input::placeholder { color: rgba(255,255,255,0.2); letter-spacing: 0; }
-
-  .btn-login {
-    width: 100%;
-    padding: 14px;
-    background: var(--gold);
-    color: var(--navy);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    border: none;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 0.5rem;
-    letter-spacing: 0.02em;
-  }
+  .btn-login { width: 100%; padding: 14px; background: var(--gold); color: var(--navy); font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
   .btn-login:hover { background: var(--gold-light); transform: translateY(-1px); }
-  .btn-login:active { transform: translateY(0); }
+  .login-error { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.3); color: #fca5a5; border-radius: var(--radius-sm); padding: 10px 14px; font-size: 13px; margin-top: 0.75rem; display: none; }
+  .login-footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px; color: var(--text-light); text-align: center; line-height: 1.6; }
 
-  .login-error {
-    background: rgba(220,38,38,0.1);
-    border: 1px solid rgba(220,38,38,0.3);
-    color: #fca5a5;
-    border-radius: var(--radius-sm);
-    padding: 10px 14px;
-    font-size: 13px;
-    margin-top: 0.75rem;
-    display: none;
-  }
-
-  .login-footer {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    font-size: 12px;
-    color: var(--text-light);
-    text-align: center;
-    line-height: 1.6;
-  }
-
-  /* ─── MAIN APP ─── */
+  /* APP */
   #app-screen { display: none; min-height: 100vh; }
-
-  .app-header {
-    background: var(--navy);
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(201,168,76,0.15);
-    position: sticky; top: 0; z-index: 100;
-  }
-
+  .app-header { background: var(--navy); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(201,168,76,0.15); position: sticky; top: 0; z-index: 100; }
   .app-logo { display: flex; align-items: center; gap: 10px; }
-  .app-logomark {
-    width: 34px; height: 34px;
-    background: var(--gold);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .app-logomark { width: 34px; height: 34px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
   .app-logomark svg { width: 18px; height: 18px; }
-  .app-brand-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 19px;
-    color: var(--white);
-  }
+  .app-brand-name { font-family: 'DM Serif Display', serif; font-size: 19px; color: var(--white); }
   .app-brand-sub { font-size: 11px; color: var(--gold); margin-left: 2px; }
-
-  .btn-logout {
-    font-size: 12px; color: var(--text-light);
-    background: transparent; border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 6px; padding: 6px 14px; cursor: pointer;
-    transition: all 0.2s; font-family: 'DM Sans', sans-serif;
-  }
+  .btn-logout { font-size: 12px; color: var(--text-light); background: transparent; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 6px 14px; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
   .btn-logout:hover { color: var(--white); border-color: rgba(255,255,255,0.25); }
-
   .app-body { max-width: 720px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
 
-  /* Step bar */
+  /* Steps */
   .step-bar { display: flex; gap: 6px; margin-bottom: 2.5rem; }
-  .step-pip {
-    height: 3px; flex: 1; border-radius: 99px;
-    background: rgba(15,22,35,0.15); transition: background 0.4s;
-  }
+  .step-pip { height: 3px; flex: 1; border-radius: 99px; background: rgba(15,22,35,0.15); transition: background 0.4s; }
   .step-pip.done { background: var(--gold); }
   .step-pip.active { background: var(--navy); }
-
   .step { display: none; animation: fadeIn 0.3s ease both; }
   .step.visible { display: block; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-  .step-eyebrow {
-    font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 6px;
-  }
-  .step-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 28px; color: var(--navy);
-    margin-bottom: 6px; line-height: 1.2;
-  }
+  .step-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .step-title { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--navy); margin-bottom: 6px; line-height: 1.2; }
   .step-desc { font-size: 14px; color: var(--text-mid); margin-bottom: 2rem; line-height: 1.7; }
 
   /* Fields */
   .field { margin-bottom: 1.5rem; }
-  .field > label {
-    display: block; font-size: 13px; font-weight: 500;
-    color: var(--text-dark); margin-bottom: 5px;
-  }
+  .field > label { display: block; font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 5px; }
   .field .sublabel { font-size: 11px; color: var(--text-light); margin-bottom: 8px; }
   .field .hint { font-size: 12px; color: var(--text-light); margin-top: 6px; line-height: 1.5; }
-
-  .field select, .field textarea {
-    width: 100%; padding: 11px 14px;
-    background: var(--white);
-    border: 1px solid rgba(15,22,35,0.12);
-    border-radius: var(--radius-sm);
-    color: var(--text-dark);
-    font-size: 14px; font-family: 'DM Sans', sans-serif;
-    outline: none; transition: border 0.2s;
-  }
-  .field select:focus, .field textarea:focus {
-    border-color: var(--navy); box-shadow: 0 0 0 3px rgba(15,22,35,0.06);
-  }
+  .field select, .field textarea { width: 100%; padding: 11px 14px; background: var(--white); border: 1px solid rgba(15,22,35,0.12); border-radius: var(--radius-sm); color: var(--text-dark); font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none; transition: border 0.2s; }
+  .field select:focus, .field textarea:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(15,22,35,0.06); }
   .field textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
   /* Chips */
   .chip-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-  .chip {
-    padding: 7px 16px; border-radius: 99px; font-size: 13px;
-    border: 1px solid rgba(15,22,35,0.15);
-    background: var(--white);
-    color: var(--text-mid);
-    cursor: pointer; transition: all 0.15s; user-select: none;
-    font-family: 'DM Sans', sans-serif;
-  }
+  .chip { padding: 7px 16px; border-radius: 99px; font-size: 13px; border: 1px solid rgba(15,22,35,0.15); background: var(--white); color: var(--text-mid); cursor: pointer; transition: all 0.15s; user-select: none; font-family: 'DM Sans', sans-serif; }
   .chip:hover { border-color: var(--navy); color: var(--navy); }
   .chip.selected { background: var(--navy); color: var(--white); border-color: var(--navy); }
 
-  /* Grid */
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-  /* Qty cards */
+  /* Qty */
   .qty-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 4px; }
-  .qty-card {
-    border: 1px solid rgba(15,22,35,0.12);
-    border-radius: var(--radius);
-    padding: 16px 10px; cursor: pointer;
-    background: var(--white); text-align: center;
-    position: relative; transition: all 0.15s;
-  }
+  .qty-card { border: 1px solid rgba(15,22,35,0.12); border-radius: var(--radius); padding: 16px 10px; cursor: pointer; background: var(--white); text-align: center; position: relative; transition: all 0.15s; }
   .qty-card:hover { border-color: var(--navy); }
   .qty-card.selected { border-color: var(--navy); background: var(--navy); }
   .qty-card.selected .qc-num, .qty-card.selected .qc-label { color: var(--white); }
   .qc-num { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--navy); }
   .qc-label { font-size: 11px; color: var(--text-light); margin-top: 3px; }
-  .qty-card .badge {
-    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-    background: var(--gold); color: var(--navy);
-    font-size: 10px; font-weight: 500;
-    padding: 2px 10px; border-radius: 99px; white-space: nowrap;
-  }
+  .qty-card .badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--navy); font-size: 10px; font-weight: 500; padding: 2px 10px; border-radius: 99px; white-space: nowrap; }
 
   /* Format cards */
   .format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .format-card {
-    border: 1px solid rgba(15,22,35,0.12);
-    border-radius: var(--radius); padding: 18px 14px;
-    cursor: pointer; background: var(--white); text-align: center;
-    transition: all 0.15s;
-  }
+  .format-card { border: 1px solid rgba(15,22,35,0.12); border-radius: var(--radius); padding: 18px 14px; cursor: pointer; background: var(--white); text-align: center; transition: all 0.15s; }
   .format-card:hover { border-color: var(--navy); }
   .format-card.selected { border-color: var(--navy); background: rgba(15,22,35,0.03); }
   .fc-icon { font-size: 24px; margin-bottom: 8px; display: block; }
   .fc-name { font-size: 13px; font-weight: 500; color: var(--navy); }
   .fc-desc { font-size: 11px; color: var(--text-light); margin-top: 3px; }
 
-  /* Sections */
   .objetivo-section, .format-section { display: none; }
   .objetivo-section.visible, .format-section.visible { display: block; }
 
   /* Mix preview */
-  .mix-preview {
-    border: 1px solid rgba(15,22,35,0.1);
-    border-radius: var(--radius); overflow: hidden; margin-top: 0.75rem;
-    background: var(--white);
-  }
-  .mix-header {
-    padding: 10px 16px;
-    background: var(--navy); color: var(--gold);
-    font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
-  }
-  .mix-row {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 11px 16px; border-bottom: 1px solid rgba(15,22,35,0.06); font-size: 13px;
-  }
+  .mix-preview { border: 1px solid rgba(15,22,35,0.1); border-radius: var(--radius); overflow: hidden; margin-top: 0.75rem; background: var(--white); }
+  .mix-header { padding: 10px 16px; background: var(--navy); color: var(--gold); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+  .mix-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; border-bottom: 1px solid rgba(15,22,35,0.06); font-size: 13px; }
   .mix-row:last-child { border-bottom: none; }
   .mix-left { display: flex; align-items: center; gap: 10px; }
   .mix-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .mix-name { font-weight: 500; color: var(--navy); }
   .mix-sub { font-size: 11px; color: var(--text-light); }
   .mix-right { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
-  .mix-tag {
-    font-size: 11px; padding: 3px 9px; border-radius: 99px;
-    background: var(--cream); color: var(--text-mid);
-    border: 1px solid rgba(15,22,35,0.08);
-  }
+  .mix-tag { font-size: 11px; padding: 3px 9px; border-radius: 99px; background: var(--cream); color: var(--text-mid); border: 1px solid rgba(15,22,35,0.08); }
 
-  /* Info box */
-  .info-box {
-    background: var(--cream); border: 1px solid rgba(15,22,35,0.08);
-    border-radius: var(--radius-sm); padding: 12px 16px;
-    font-size: 13px; color: var(--text-mid); line-height: 1.6; margin-bottom: 1rem;
-  }
+  .info-box { background: var(--cream); border: 1px solid rgba(15,22,35,0.08); border-radius: var(--radius-sm); padding: 12px 16px; font-size: 13px; color: var(--text-mid); line-height: 1.6; margin-bottom: 1rem; }
   .info-box strong { color: var(--navy); font-weight: 500; }
 
   /* Summary */
-  .summary-card {
-    background: var(--white);
-    border: 1px solid rgba(15,22,35,0.1);
-    border-radius: var(--radius); overflow: hidden; margin-bottom: 1.5rem;
-  }
-  .summary-row {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    padding: 12px 18px; border-bottom: 1px solid rgba(15,22,35,0.06);
-    font-size: 13px; gap: 16px;
-  }
+  .summary-card { background: var(--white); border: 1px solid rgba(15,22,35,0.1); border-radius: var(--radius); overflow: hidden; margin-bottom: 1.5rem; }
+  .summary-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 18px; border-bottom: 1px solid rgba(15,22,35,0.06); font-size: 13px; gap: 16px; }
   .summary-row:last-child { border-bottom: none; }
   .sr-label { color: var(--text-light); white-space: nowrap; }
   .sr-val { color: var(--navy); font-weight: 500; text-align: right; }
 
   /* Nav */
   .nav { display: flex; gap: 10px; margin-top: 2rem; }
-  .btn-back {
-    padding: 12px 24px; border-radius: var(--radius-sm);
-    border: 1px solid rgba(15,22,35,0.15);
-    background: transparent; color: var(--text-mid);
-    cursor: pointer; font-size: 14px; font-family: 'DM Sans', sans-serif;
-    transition: all 0.15s;
-  }
+  .btn-back { padding: 12px 24px; border-radius: var(--radius-sm); border: 1px solid rgba(15,22,35,0.15); background: transparent; color: var(--text-mid); cursor: pointer; font-size: 14px; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
   .btn-back:hover { background: var(--cream-dark); }
-  .btn-primary {
-    flex: 1; padding: 13px 24px; border-radius: var(--radius-sm);
-    background: var(--navy); color: var(--white);
-    border: none; font-size: 15px; font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer; transition: all 0.2s; letter-spacing: 0.01em;
-  }
+  .btn-primary { flex: 1; padding: 13px 24px; border-radius: var(--radius-sm); background: var(--navy); color: var(--white); border: none; font-size: 15px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.2s; }
   .btn-primary:hover { background: var(--navy-mid); transform: translateY(-1px); }
-  .btn-primary:active { transform: translateY(0); }
-
-  .btn-generate {
-    flex: 1; padding: 14px 24px; border-radius: var(--radius-sm);
-    background: var(--gold); color: var(--navy);
-    border: none; font-size: 15px; font-weight: 500;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer; transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-  }
+  .btn-generate { flex: 1; padding: 14px 24px; border-radius: var(--radius-sm); background: var(--gold); color: var(--navy); border: none; font-size: 15px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .btn-generate:hover { background: var(--gold-light); transform: translateY(-1px); }
-  .btn-generate:active { transform: translateY(0); }
+  .btn-generate:disabled { opacity: 0.6; cursor: default; transform: none; }
 
-  /* Instruction box (step 3) */
-  .instruction-box {
-    background: var(--navy);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    margin-top: 1.5rem;
-  }
-  .instruction-title {
-    font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
-  }
-  .instruction-steps { list-style: none; }
-  .instruction-steps li {
-    display: flex; gap: 12px; align-items: flex-start;
-    font-size: 13px; color: rgba(255,255,255,0.75);
-    padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
-    line-height: 1.5;
-  }
-  .instruction-steps li:last-child { border-bottom: none; }
-  .instruction-steps .step-num {
-    width: 20px; height: 20px; border-radius: 50%;
-    background: var(--gold); color: var(--navy);
-    font-size: 11px; font-weight: 500;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; margin-top: 1px;
-  }
+  /* Result */
+  .result-area { margin-top: 1.5rem; }
+  .result-block { background: var(--white); border: 1px solid rgba(15,22,35,0.1); border-radius: var(--radius); overflow: hidden; margin-bottom: 14px; }
+  .result-header { display: flex; align-items: center; justify-content: space-between; padding: 11px 16px; background: var(--navy); }
+  .result-header .rh-label { font-size: 12px; font-weight: 500; color: var(--gold); }
+  .rh-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .rh-tag { font-size: 11px; padding: 3px 9px; border-radius: 99px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+  .result-body { padding: 18px; }
+  .result-body pre { font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.8; color: var(--text-dark); white-space: pre-wrap; word-break: break-word; }
+  .copy-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: var(--radius-sm); border: 1px solid rgba(15,22,35,0.12); background: transparent; color: var(--text-mid); font-size: 12px; cursor: pointer; transition: all 0.15s; margin-top: 10px; font-family: 'DM Sans', sans-serif; }
+  .copy-btn:hover { background: var(--cream); }
+
+  /* Loading */
+  .loading-state { display: flex; flex-direction: column; align-items: center; padding: 3.5rem 0; gap: 16px; }
+  .spinner { width: 36px; height: 36px; border: 2px solid rgba(15,22,35,0.1); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 14px; color: var(--text-mid); }
+  .loading-sub { font-size: 12px; color: var(--text-light); }
+
+  .error-msg { background: rgba(220,38,38,0.06); border: 1px solid rgba(220,38,38,0.2); color: #b91c1c; border-radius: var(--radius-sm); padding: 12px 16px; font-size: 13px; margin-top: 1rem; line-height: 1.5; }
+
+  .restart-btn { display: inline-flex; align-items: center; gap: 6px; padding: 11px 22px; border-radius: var(--radius-sm); border: 1px solid rgba(15,22,35,0.15); background: transparent; color: var(--text-dark); font-size: 14px; cursor: pointer; transition: all 0.15s; margin-top: 1.5rem; font-family: 'DM Sans', sans-serif; }
+  .restart-btn:hover { background: var(--cream-dark); }
 
   @media (max-width: 540px) {
     .grid2 { grid-template-columns: 1fr; }
@@ -458,55 +179,38 @@
 </head>
 <body>
 
-<!-- ═══════════════════════════ LOGIN ═══════════════════════════ -->
+<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">
       <div class="login-logomark">
-        <svg viewBox="0 0 22 22" fill="none">
-          <rect x="3" y="3" width="7" height="7" rx="2" fill="#0f1623" opacity="0.9"/>
-          <rect x="12" y="3" width="7" height="7" rx="2" fill="#0f1623" opacity="0.5"/>
-          <rect x="3" y="12" width="7" height="7" rx="2" fill="#0f1623" opacity="0.5"/>
-          <rect x="12" y="12" width="7" height="7" rx="2" fill="#0f1623" opacity="0.9"/>
-        </svg>
+        <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="2" fill="#0f1623" opacity="0.9"/><rect x="12" y="3" width="7" height="7" rx="2" fill="#0f1623" opacity="0.5"/><rect x="3" y="12" width="7" height="7" rx="2" fill="#0f1623" opacity="0.5"/><rect x="12" y="12" width="7" height="7" rx="2" fill="#0f1623" opacity="0.9"/></svg>
       </div>
-      <div class="login-brand">
+      <div>
         <div class="login-brand-name">Educa.ai</div>
         <div class="login-brand-sub">Conteúdo para IEs</div>
       </div>
     </div>
-
     <div class="login-title">Bem-vindo de volta.</div>
     <div class="login-desc">Insira sua senha de acesso para entrar na plataforma.</div>
-
     <div class="login-field">
       <label>Senha de acesso</label>
       <div class="login-input-wrap">
         <input type="password" id="senha-input" placeholder="••••••••••••" autocomplete="current-password">
       </div>
     </div>
-
     <button class="btn-login" id="btn-login">Entrar na plataforma</button>
     <div class="login-error" id="login-error">Senha incorreta. Tente novamente.</div>
-
-    <div class="login-footer">
-      Precisa de ajuda? Entre em contato com o suporte.<br>
-      <strong style="color: rgba(255,255,255,0.4);">Educa.ai &copy; 2025</strong>
-    </div>
+    <div class="login-footer">Precisa de ajuda? Entre em contato com o suporte.<br><strong style="color:rgba(255,255,255,0.3)">Educa.ai &copy; 2025</strong></div>
   </div>
 </div>
 
-<!-- ═══════════════════════════ APP ═══════════════════════════ -->
+<!-- APP -->
 <div id="app-screen">
   <header class="app-header">
     <div class="app-logo">
       <div class="app-logomark">
-        <svg viewBox="0 0 22 22" fill="none">
-          <rect x="3" y="3" width="7" height="7" rx="2" fill="#0f1623" opacity="0.9"/>
-          <rect x="12" y="3" width="7" height="7" rx="2" fill="#0f1623" opacity="0.5"/>
-          <rect x="3" y="12" width="7" height="7" rx="2" fill="#0f1623" opacity="0.5"/>
-          <rect x="12" y="12" width="7" height="7" rx="2" fill="#0f1623" opacity="0.9"/>
-        </svg>
+        <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="7" height="7" rx="2" fill="#0f1623" opacity="0.9"/><rect x="12" y="3" width="7" height="7" rx="2" fill="#0f1623" opacity="0.5"/><rect x="3" y="12" width="7" height="7" rx="2" fill="#0f1623" opacity="0.5"/><rect x="12" y="12" width="7" height="7" rx="2" fill="#0f1623" opacity="0.9"/></svg>
       </div>
       <div>
         <span class="app-brand-name">Educa.ai</span>
@@ -517,19 +221,17 @@
   </header>
 
   <div class="app-body">
-
     <div class="step-bar">
       <div class="step-pip active" id="pip-0"></div>
       <div class="step-pip" id="pip-1"></div>
       <div class="step-pip" id="pip-2"></div>
     </div>
 
-    <!-- ── STEP 0 ── -->
+    <!-- STEP 0 -->
     <div class="step visible" id="step-0">
       <div class="step-eyebrow">Passo 1 de 3</div>
       <div class="step-title">Sua instituição</div>
       <div class="step-desc">Quanto mais específico você for, mais único e irreproduzível será o conteúdo gerado.</div>
-
       <div class="field">
         <label>Segmento de atuação</label>
         <div class="sublabel">Selecione todos que se aplicam</div>
@@ -546,13 +248,11 @@
           <div class="chip" data-val="Cursos Livres">Cursos Livres</div>
         </div>
       </div>
-
       <div class="field">
         <label>Qual é o maior diferencial da sua instituição?</label>
         <textarea id="diferencial" placeholder="Ex: metodologia bilíngue desde os 2 anos, aprovações no ITA/IME, infraestrutura com quadras e piscina cobertas..."></textarea>
         <div class="hint">Esse diferencial será o fio condutor de todo o conteúdo gerado.</div>
       </div>
-
       <div class="grid2">
         <div class="field">
           <label>Público-alvo</label>
@@ -578,44 +278,30 @@
           </select>
         </div>
       </div>
-
       <div class="field">
         <label>Contexto atual <span style="font-weight:300;color:var(--text-light)">(opcional)</span></label>
-        <textarea id="extra" placeholder="Ex: período de matrícula com 30 vagas restantes, próximo ao ENEM, evento de portas abertas semana que vem..." style="min-height:64px;"></textarea>
+        <textarea id="extra" placeholder="Ex: período de matrícula com 30 vagas restantes, próximo ao ENEM..." style="min-height:64px;"></textarea>
         <div class="hint">Ajuda a calibrar o momento de cada conteúdo dentro do funil.</div>
       </div>
-
       <div class="nav">
         <button class="btn-primary" id="next-0">Continuar →</button>
       </div>
     </div>
 
-    <!-- ── STEP 1 ── -->
+    <!-- STEP 1 -->
     <div class="step" id="step-1">
       <div class="step-eyebrow">Passo 2 de 3</div>
       <div class="step-title">Formato e quantidade</div>
-      <div class="step-desc">Para calendários, os objetivos e formatos são distribuídos automaticamente com base na estratégia de funil.</div>
-
+      <div class="step-desc">Para calendários, objetivos e formatos são distribuídos automaticamente com base na estratégia de funil.</div>
       <div class="field">
         <label>Quantidade de conteúdo</label>
         <div class="qty-grid" id="qty-grid">
-          <div class="qty-card" data-val="1" data-type="single">
-            <div class="qc-num">1</div><div class="qc-label">post</div>
-          </div>
-          <div class="qty-card" data-val="2" data-type="single">
-            <div class="qc-num">2</div><div class="qc-label">posts</div>
-          </div>
-          <div class="qty-card" data-val="7" data-type="calendar">
-            <div class="badge">Popular</div>
-            <div class="qc-num">7d</div><div class="qc-label">calendário semanal</div>
-          </div>
-          <div class="qty-card" data-val="30" data-type="calendar">
-            <div class="qc-num">30d</div><div class="qc-label">calendário mensal</div>
-          </div>
+          <div class="qty-card" data-val="1" data-type="single"><div class="qc-num">1</div><div class="qc-label">post</div></div>
+          <div class="qty-card" data-val="2" data-type="single"><div class="qc-num">2</div><div class="qc-label">posts</div></div>
+          <div class="qty-card" data-val="7" data-type="calendar"><div class="badge">Popular</div><div class="qc-num">7d</div><div class="qc-label">calendário semanal</div></div>
+          <div class="qty-card" data-val="30" data-type="calendar"><div class="qc-num">30d</div><div class="qc-label">calendário mensal</div></div>
         </div>
       </div>
-
-      <!-- Para posts únicos/duplos -->
       <div class="objetivo-section" id="section-objetivo">
         <div class="field" style="margin-top:1.25rem;">
           <label>Objetivo do post</label>
@@ -631,59 +317,33 @@
         <div class="field">
           <label>Formato do post</label>
           <div class="format-grid" id="format-grid">
-            <div class="format-card" data-val="Post estático">
-              <span class="fc-icon">🖼</span>
-              <div class="fc-name">Post estático</div>
-              <div class="fc-desc">Headline + legenda + arte</div>
-            </div>
-            <div class="format-card" data-val="Carrossel">
-              <span class="fc-icon">📑</span>
-              <div class="fc-name">Carrossel</div>
-              <div class="fc-desc">Slides com foto por tela</div>
-            </div>
-            <div class="format-card" data-val="Script de vídeo">
-              <span class="fc-icon">🎬</span>
-              <div class="fc-name">Script de vídeo</div>
-              <div class="fc-desc">Roteiro para reels/stories</div>
-            </div>
+            <div class="format-card" data-val="Post estático"><span class="fc-icon">🖼</span><div class="fc-name">Post estático</div><div class="fc-desc">Headline + legenda + arte</div></div>
+            <div class="format-card" data-val="Carrossel"><span class="fc-icon">📑</span><div class="fc-name">Carrossel</div><div class="fc-desc">Slides com foto por tela</div></div>
+            <div class="format-card" data-val="Script de vídeo"><span class="fc-icon">🎬</span><div class="fc-name">Script de vídeo</div><div class="fc-desc">Roteiro para reels/stories</div></div>
           </div>
         </div>
       </div>
-
-      <!-- Para calendários -->
       <div class="format-section" id="section-calendar">
         <div class="field" style="margin-top:1.25rem;">
-          <div class="info-box">A ferramenta distribui <strong>objetivos, formatos e gatilhos mentais</strong> automaticamente — cobrindo todas as etapas do funil sem repetição e sem conteúdo genérico.</div>
+          <div class="info-box">A ferramenta distribui <strong>objetivos, formatos e gatilhos mentais</strong> automaticamente — cobrindo todas as etapas do funil sem repetição.</div>
           <label>Estratégia gerada automaticamente</label>
           <div class="mix-preview" id="mix-preview"></div>
         </div>
       </div>
-
       <div class="nav">
         <button class="btn-back" id="back-1">← Voltar</button>
         <button class="btn-primary" id="next-1">Continuar →</button>
       </div>
     </div>
 
-    <!-- ── STEP 2 ── -->
+    <!-- STEP 2 -->
     <div class="step" id="step-2">
       <div class="step-eyebrow">Passo 3 de 3</div>
       <div class="step-title">Revisar e gerar</div>
-      <div class="step-desc">Confira os dados abaixo. Ao clicar em gerar, o Claude.ai abrirá numa nova aba com o conteúdo completo pronto.</div>
-
+      <div class="step-desc">Confira os dados abaixo e clique em gerar. O conteúdo aparecerá aqui na própria ferramenta.</div>
       <div class="summary-card" id="summary-card"></div>
-
-      <div class="instruction-box">
-        <div class="instruction-title">Como usar</div>
-        <ul class="instruction-steps">
-          <li><span class="step-num">1</span>Clique em "Gerar conteúdo" abaixo</li>
-          <li><span class="step-num">2</span>O Claude.ai abrirá numa nova aba — faça login se necessário (conta gratuita)</li>
-          <li><span class="step-num">3</span>O prompt já estará preenchido e pronto — clique em enviar</li>
-          <li><span class="step-num">4</span>Copie o conteúdo gerado e repasse ao seu designer ou cole no Canva</li>
-        </ul>
-      </div>
-
-      <div class="nav" style="margin-top:1.5rem;">
+      <div id="result-area" class="result-area"></div>
+      <div class="nav" id="nav-generate">
         <button class="btn-back" id="back-2">← Voltar</button>
         <button class="btn-generate" id="btn-generate">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L9.5 6H14L10.5 9L12 13.5L8 11L4 13.5L5.5 9L2 6H6.5L8 1.5Z" fill="currentColor"/></svg>
@@ -691,30 +351,24 @@
         </button>
       </div>
     </div>
-
   </div>
 </div>
 
 <script>
-  // ─── CONFIG ───
   const SENHA = 'educaai2025';
 
-  // ─── LOGIN ───
+  // LOGIN
   document.getElementById('btn-login').addEventListener('click', login);
   document.getElementById('senha-input').addEventListener('keydown', e => { if(e.key==='Enter') login(); });
-
   function login() {
-    const val = document.getElementById('senha-input').value.trim();
-    if(val === SENHA) {
+    if(document.getElementById('senha-input').value.trim() === SENHA) {
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('app-screen').style.display = 'block';
     } else {
       document.getElementById('login-error').style.display = 'block';
       document.getElementById('senha-input').value = '';
-      document.getElementById('senha-input').focus();
     }
   }
-
   document.getElementById('btn-logout').addEventListener('click', () => {
     document.getElementById('login-screen').style.display = 'flex';
     document.getElementById('app-screen').style.display = 'none';
@@ -723,11 +377,8 @@
     resetApp();
   });
 
-  // ─── STATE ───
-  const state = {
-    segmentos:[], diferencial:'', publicos:[], tom:'', extra:'',
-    quantidade:'', tipoQtd:'', objetivo:'', formato:'', mix:[]
-  };
+  // STATE
+  const state = { segmentos:[], diferencial:'', publicos:[], tom:'', extra:'', quantidade:'', tipoQtd:'', objetivo:'', formato:'', mix:[] };
 
   const mixDefs = {
     '7': [
@@ -747,33 +398,23 @@
     ]
   };
 
-  // ─── CHIPS ───
   function setupMulti(id, key) {
     document.getElementById(id)?.querySelectorAll('.chip').forEach(c => {
-      c.addEventListener('click', () => {
-        c.classList.toggle('selected');
-        state[key] = [...document.getElementById(id).querySelectorAll('.chip.selected')].map(x=>x.dataset.val);
-      });
+      c.addEventListener('click', () => { c.classList.toggle('selected'); state[key]=[...document.getElementById(id).querySelectorAll('.chip.selected')].map(x=>x.dataset.val); });
     });
   }
   function setupSingle(id, key) {
     document.getElementById(id)?.querySelectorAll('.chip').forEach(c => {
-      c.addEventListener('click', () => {
-        document.getElementById(id).querySelectorAll('.chip').forEach(x=>x.classList.remove('selected'));
-        c.classList.add('selected'); state[key]=c.dataset.val;
-      });
+      c.addEventListener('click', () => { document.getElementById(id).querySelectorAll('.chip').forEach(x=>x.classList.remove('selected')); c.classList.add('selected'); state[key]=c.dataset.val; });
     });
   }
-
   setupMulti('chips-segmento','segmentos');
   setupMulti('chips-publico','publicos');
   setupSingle('chips-objetivo','objetivo');
-
   document.getElementById('diferencial').addEventListener('input', e=>state.diferencial=e.target.value);
   document.getElementById('tom').addEventListener('change', e=>state.tom=e.target.value);
   document.getElementById('extra').addEventListener('input', e=>state.extra=e.target.value);
 
-  // ─── QTY CARDS ───
   document.querySelectorAll('#qty-grid .qty-card').forEach(card => {
     card.addEventListener('click', () => {
       document.querySelectorAll('#qty-grid .qty-card').forEach(c=>c.classList.remove('selected'));
@@ -789,10 +430,7 @@
   });
 
   document.querySelectorAll('#format-grid .format-card').forEach(card => {
-    card.addEventListener('click', () => {
-      document.querySelectorAll('#format-grid .format-card').forEach(c=>c.classList.remove('selected'));
-      card.classList.add('selected'); state.formato=card.dataset.val;
-    });
+    card.addEventListener('click', () => { document.querySelectorAll('#format-grid .format-card').forEach(c=>c.classList.remove('selected')); card.classList.add('selected'); state.formato=card.dataset.val; });
   });
 
   function renderMix() {
@@ -801,35 +439,21 @@
     document.getElementById('mix-preview').innerHTML =
       `<div class="mix-header">${label}</div>` +
       mix.map(m=>`<div class="mix-row">
-        <div class="mix-left">
-          <div class="mix-dot" style="background:${m.cor}"></div>
-          <div><div class="mix-name">${m.dia}</div><div class="mix-sub">${m.formato}</div></div>
-        </div>
-        <div class="mix-right">
-          <span class="mix-tag">${m.objetivo}</span>
-          <span class="mix-tag">${m.gatilho}</span>
-        </div>
+        <div class="mix-left"><div class="mix-dot" style="background:${m.cor}"></div><div><div class="mix-name">${m.dia}</div><div class="mix-sub">${m.formato}</div></div></div>
+        <div class="mix-right"><span class="mix-tag">${m.objetivo}</span><span class="mix-tag">${m.gatilho}</span></div>
       </div>`).join('');
   }
 
-  // ─── NAV ───
   function showStep(n) {
     document.querySelectorAll('.step').forEach((s,i)=>s.classList.toggle('visible',i===n));
-    document.querySelectorAll('.step-pip').forEach((p,i)=>{
-      p.classList.remove('active','done');
-      if(i<n) p.classList.add('done');
-      if(i===n) p.classList.add('active');
-    });
+    document.querySelectorAll('.step-pip').forEach((p,i)=>{ p.classList.remove('active','done'); if(i<n) p.classList.add('done'); if(i===n) p.classList.add('active'); });
     window.scrollTo({top:0, behavior:'smooth'});
   }
 
   document.getElementById('next-0').addEventListener('click', () => {
-    if(!state.segmentos.length||!state.publicos.length||!state.tom){
-      alert('Preencha segmento, público-alvo e tom de voz para continuar.'); return;
-    }
+    if(!state.segmentos.length||!state.publicos.length||!state.tom){ alert('Preencha segmento, público-alvo e tom de voz.'); return; }
     showStep(1);
   });
-
   document.getElementById('back-1').addEventListener('click', ()=>showStep(0));
   document.getElementById('next-1').addEventListener('click', () => {
     if(!state.quantidade){ alert('Selecione a quantidade de conteúdo.'); return; }
@@ -837,39 +461,31 @@
     if(state.tipoQtd==='single' && !state.formato){ alert('Selecione o formato do post.'); return; }
     buildSummary(); showStep(2);
   });
-
   document.getElementById('back-2').addEventListener('click', ()=>showStep(1));
 
   function buildSummary() {
     const isCalendar = state.tipoQtd==='calendar';
-    const qtdLabel = isCalendar
-      ? (state.quantidade==='7'?'Calendário semanal (7 posts)':'Calendário mensal (~24 posts)')
-      : `${state.quantidade} post${state.quantidade==='2'?'s':''}`;
-    const rows = [
-      ['Segmentos', state.segmentos.join(', ')],
-      ['Público-alvo', state.publicos.join(', ')],
-      ['Tom de voz', state.tom],
-      ['Quantidade', qtdLabel],
-      ['Formato', isCalendar?'Mix estratégico automático':state.formato],
-      ['Objetivo', isCalendar?'Distribuído automaticamente por funil':state.objetivo],
-    ];
-    if(state.diferencial) rows.splice(2,0,['Diferencial', state.diferencial]);
-    if(state.extra) rows.push(['Contexto', state.extra]);
-    document.getElementById('summary-card').innerHTML = rows.map(([l,v])=>
-      `<div class="summary-row"><span class="sr-label">${l}</span><span class="sr-val">${v||'—'}</span></div>`
-    ).join('');
+    const qtdLabel = isCalendar ? (state.quantidade==='7'?'Calendário semanal (7 posts)':'Calendário mensal (~24 posts)') : `${state.quantidade} post${state.quantidade==='2'?'s':''}`;
+    const rows = [['Segmentos',state.segmentos.join(', ')],['Público-alvo',state.publicos.join(', ')],['Tom de voz',state.tom],['Quantidade',qtdLabel],['Formato',isCalendar?'Mix estratégico automático':state.formato],['Objetivo',isCalendar?'Distribuído automaticamente por funil':state.objetivo]];
+    if(state.diferencial) rows.splice(2,0,['Diferencial',state.diferencial]);
+    if(state.extra) rows.push(['Contexto',state.extra]);
+    document.getElementById('summary-card').innerHTML = rows.map(([l,v])=>`<div class="summary-row"><span class="sr-label">${l}</span><span class="sr-val">${v||'—'}</span></div>`).join('');
   }
 
-  // ─── GERAR ───
-  document.getElementById('btn-generate').addEventListener('click', () => {
-    const isCalendar = state.tipoQtd==='calendar';
-    const qtdLabel = isCalendar
-      ? (state.quantidade==='7'?'calendário semanal com 7 posts':'calendário mensal com posts para 4 semanas')
-      : `${state.quantidade} post${state.quantidade==='2'?'s':''}`;
+  // GENERATE
+  document.getElementById('btn-generate').addEventListener('click', async () => {
+    const btn = document.getElementById('btn-generate');
+    const navGenerate = document.getElementById('nav-generate');
+    const area = document.getElementById('result-area');
 
-    const instrucaoFormato = isCalendar
-      ? state.mix.map(m=>`- ${m.dia}: formato "${m.formato}", objetivo "${m.objetivo}", gatilho mental "${m.gatilho}"`).join('\n')
-      : '';
+    btn.disabled = true;
+    btn.innerHTML = '<div style="width:18px;height:18px;border:2px solid rgba(15,22,35,0.2);border-top-color:var(--navy);border-radius:50%;animation:spin 0.8s linear infinite"></div> Gerando...';
+
+    area.innerHTML = `<div class="loading-state"><div class="spinner"></div><div class="loading-text">Gerando seu conteúdo com estratégia de funil...</div><div class="loading-sub">Isso pode levar até 30 segundos</div></div>`;
+
+    const isCalendar = state.tipoQtd==='calendar';
+    const qtdLabel = isCalendar ? (state.quantidade==='7'?'calendário semanal com 7 posts':'calendário mensal com posts para 4 semanas') : `${state.quantidade} post${state.quantidade==='2'?'s':''}`;
+    const instrucaoFormato = isCalendar ? state.mix.map(m=>`- ${m.dia}: formato "${m.formato}", objetivo "${m.objetivo}", gatilho mental "${m.gatilho}"`).join('\n') : '';
 
     const prompt = `GERADOR EDUCA.AI — Gere agora o conteúdo completo para esta instituição de ensino:
 
@@ -904,19 +520,87 @@ Para SCRIPT DE VÍDEO, entregue:
 Regras gerais:
 - Use o diferencial da escola de forma criativa e específica em cada post
 - Nunca use clichês como "Aqui na nossa escola" ou frases genéricas
-- Indique para cada post: número, dia/semana, formato, objetivo e gatilho mental`;
+- Indique para cada post: número, dia/semana, formato, objetivo e gatilho mental
+- Separe cada post com: POST [número] — [dia]`;
 
-    const encoded = encodeURIComponent(prompt);
-    window.open(`https://claude.ai/new?q=${encoded}`, '_blank');
+    try {
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Erro na API');
+
+      const posts = parseIntoPosts(data.result);
+      window._posts = posts;
+
+      area.innerHTML = posts.map((p,i) => `
+        <div class="result-block">
+          <div class="result-header">
+            <span class="rh-label">${p.title}</span>
+            <div class="rh-tags">
+              ${p.funil?`<span class="rh-tag">${p.funil}</span>`:''}
+              ${p.gatilho?`<span class="rh-tag">${p.gatilho}</span>`:''}
+              ${p.formato?`<span class="rh-tag">${p.formato}</span>`:''}
+            </div>
+          </div>
+          <div class="result-body">
+            <pre>${p.body}</pre>
+            <button class="copy-btn" onclick="copyText(this,${i})">Copiar</button>
+          </div>
+        </div>`).join('');
+
+      const r = document.createElement('div');
+      r.innerHTML = `<button class="restart-btn" onclick="restartGen()">← Gerar novo conteúdo</button>`;
+      area.appendChild(r);
+
+    } catch(e) {
+      area.innerHTML = `<div class="error-msg">Erro ao gerar conteúdo: ${e.message}.<br>Verifique se a variável ANTHROPIC_KEY está configurada no Vercel e tente novamente.</div>`;
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L9.5 6H14L10.5 9L12 13.5L8 11L4 13.5L5.5 9L2 6H6.5L8 1.5Z" fill="currentColor"/></svg> Gerar conteúdo';
   });
 
-  // ─── RESET ───
+  function parseIntoPosts(text) {
+    const blocks = text.split(/(?=POST\s+\d)/i).filter(b=>b.trim());
+    if(blocks.length > 1) {
+      return blocks.map(block => {
+        const lines = block.trim().split('\n');
+        const title = lines[0].replace(/\*\*/g,'').trim();
+        const funilLine = lines.find(l=>/estágio do funil/i.test(l))||'';
+        const gatilhoLine = lines.find(l=>/gatilho mental/i.test(l))||'';
+        const formatoLine = lines.find(l=>/^formato:/i.test(l.trim()))||'';
+        const sep = lines.findIndex(l=>l.trim()==='---');
+        const body = sep>=0 ? lines.slice(sep+1).join('\n').trim() : lines.slice(1).join('\n').trim();
+        const getVal = l => l.split(':').slice(1).join(':').trim();
+        return { title, funil: getVal(funilLine), gatilho: getVal(gatilhoLine), formato: getVal(formatoLine), body };
+      });
+    }
+    return [{ title:'Conteúdo gerado', funil:'', gatilho:'', formato:'', body: text.trim() }];
+  }
+
+  window.copyText = (btn, idx) => {
+    navigator.clipboard.writeText(window._posts[idx].body).then(() => {
+      btn.textContent = 'Copiado!';
+      setTimeout(()=>btn.textContent='Copiar', 2000);
+    });
+  };
+
+  window.restartGen = () => {
+    document.getElementById('result-area').innerHTML = '';
+    buildSummary();
+  };
+
   function resetApp() {
     Object.keys(state).forEach(k=>{ state[k]=Array.isArray(state[k])?[]:'' });
     document.querySelectorAll('.chip.selected,.format-card.selected,.qty-card.selected').forEach(c=>c.classList.remove('selected'));
     document.getElementById('diferencial').value='';
     document.getElementById('extra').value='';
     document.getElementById('tom').value='';
+    document.getElementById('result-area').innerHTML='';
     document.getElementById('section-objetivo').classList.remove('visible');
     document.getElementById('section-calendar').classList.remove('visible');
     showStep(0);
